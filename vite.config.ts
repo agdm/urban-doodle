@@ -5,4 +5,13 @@ import { devvit } from '@devvit/start/vite';
 
 export default defineConfig({
     plugins: [react(), tailwind(), devvit()],
+    server: {
+        proxy: {
+            '/api': {
+                target: 'https://api.weather.gov/',
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/api/, ''),
+            }
+        }
+    }
 });
