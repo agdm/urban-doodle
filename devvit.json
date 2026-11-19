@@ -1,6 +1,14 @@
 {
   "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
   "name": "highball-daily",
+  "permissions": {
+    "http": {
+      "enable": true,
+      "domains": [
+        "api.weather.gov"
+      ]
+    }
+  },
   "post": {
     "dir": "dist/client",
     "entrypoints": {
