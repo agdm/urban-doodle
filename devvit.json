@@ -18,6 +18,9 @@
       },
       "game": {
         "entry": "game.html"
+      },
+      "preview": {
+        "entry": "preview.html"
       }
     }
   },

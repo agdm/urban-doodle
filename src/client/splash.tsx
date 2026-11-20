@@ -32,6 +32,10 @@ export const Splash = () => {
         >
           Tap to Start
         </button>
+        {/* TEMPORARY: opens the unstyled component preview. */}
+        <button onClick={(e) => requestExpandedMode(e.nativeEvent, 'preview')}>
+          Component preview
+        </button>
       </div>
       <footer className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3 text-[0.8em] text-gray-600 dark:text-gray-400">
         <button
