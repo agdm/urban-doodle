@@ -1,3 +1,4 @@
+import type { TodayResponse } from '../../shared/api';
 import type {
   AccuracyEntry,
   Call,
@@ -134,3 +135,20 @@ export const accuracy: AccuracyEntry[] = [
   { label: 'r/Denver', correct: 1, total: 3 },
   { label: 'All Reddit', correct: 2, total: 3 },
 ];
+
+export const todaySample: TodayResponse = {
+  type: 'today',
+  date: '2026-11-13',
+  weatherDate: '2026-11-14',
+  closesAt: denverQuestion.closesAt,
+  questions: questions.map((question) => ({
+    question,
+    yesPct: crowdByQuestion[question.id]?.yesPct ?? 50,
+    trend: crowdByQuestion[question.id]?.trend ?? [],
+  })),
+  calls: [],
+  stats: playerStats,
+  yesterday: yesterdayResults,
+  playersToday: 2184,
+  subRank: { position: 3, of: 41, scope: { kind: 'subreddit', name: 'Denver' } },
+};

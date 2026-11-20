@@ -1,3 +1,12 @@
+import type {
+  Call,
+  CrowdPoint,
+  PlayerStats,
+  Question,
+  Rank,
+  ScoredCall,
+} from './types.ts';
+
 export type InitResponse = {
   type: 'init';
   postId: string;
@@ -15,4 +24,24 @@ export type DecrementResponse = {
   type: 'decrement';
   postId: string;
   count: number;
+};
+
+export type TodayQuestion = {
+  question: Question;
+  yesPct: number;
+  trend: CrowdPoint[];
+};
+
+export type TodayResponse = {
+  type: 'today';
+  // Game day and the day the calls are about, both YYYY-MM-DD.
+  date: string;
+  weatherDate: string;
+  closesAt: string;
+  questions: TodayQuestion[];
+  calls: Call[];
+  stats: PlayerStats;
+  yesterday: ScoredCall[];
+  playersToday: number;
+  subRank?: Rank;
 };
