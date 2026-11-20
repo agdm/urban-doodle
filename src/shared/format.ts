@@ -67,3 +67,16 @@ export const formatWeatherDate = (date: string): string =>
     day: 'numeric',
     timeZone: 'UTC',
   }).format(new Date(`${date}T12:00:00Z`));
+
+export const formatShortDate = (date: string): string =>
+  new Intl.DateTimeFormat('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(`${date}T12:00:00Z`));
+
+export const formatWeekday = (date: string): string =>
+  new Intl.DateTimeFormat('en-US', { weekday: 'long', timeZone: 'UTC' }).format(
+    new Date(`${date}T12:00:00Z`)
+  );

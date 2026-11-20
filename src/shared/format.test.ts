@@ -9,7 +9,9 @@ import {
   formatForecast,
   formatLine,
   formatSignedPoints,
+  formatShortDate,
   formatWeatherDate,
+  formatWeekday,
 } from './format.ts';
 
 test('formatSignedPoints adds a + to positive numbers', () => {
@@ -49,4 +51,9 @@ test('formatLine, formatForecast and formatWeatherDate produce display strings',
   assert.equal(formatForecast({ value: 49, unit: 'F' }), 'forecast 49°F');
   assert.equal(formatForecast({ value: 70, unit: '%' }), '70% chance');
   assert.equal(formatWeatherDate('2026-11-14'), 'Saturday, Nov 14');
+});
+
+test('formatShortDate and formatWeekday name the calendar day in any time zone', () => {
+  assert.equal(formatShortDate('2026-11-13'), 'Fri, Nov 13');
+  assert.equal(formatWeekday('2026-11-14'), 'Saturday');
 });
