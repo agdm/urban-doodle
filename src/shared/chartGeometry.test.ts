@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  hourlyTicks,
   placeMarkers,
   plotArea,
   polylinePoints,
@@ -53,4 +54,13 @@ test('rangeOf spans first to last point and is null for no points', () => {
     start: 'a',
     end: 'b',
   });
+});
+
+test('hourlyTicks starts on the next whole hour and steps through the range', () => {
+  const ticks = hourlyTicks({ start: '2026-11-13T14:20:00Z', end: '2026-11-13T21:00:00Z' }, 3);
+  assert.deepEqual(ticks, [
+    '2026-11-13T15:00:00.000Z',
+    '2026-11-13T18:00:00.000Z',
+    '2026-11-13T21:00:00.000Z',
+  ]);
 });

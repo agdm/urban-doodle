@@ -5,11 +5,15 @@ import { createRoot } from 'react-dom/client';
 import { showToast } from '@devvit/web/client';
 import { priceFor } from '../shared/scoring';
 import type { Call, Side } from '../shared/types';
-import { NOW, todaySample } from './preview/fixtures';
+import { NOW, questionSamples, todaySample } from './preview/fixtures';
+import { QuestionScreen } from './screens/QuestionScreen';
 import { TodayScreen } from './screens/TodayScreen';
+
+type View = { screen: 'today' } | { screen: 'question'; questionId: string };
 
 export const App = () => {
   const [calls, setCalls] = useState<Call[]>(todaySample.calls);
+  const [view, setView] = useState<View>({ screen: 'today' });
   const today = { ...todaySample, calls };
 
   const makeCall = (questionId: string, side: Side) => {
@@ -24,13 +28,39 @@ export const App = () => {
     setCalls((prev) => [...prev, call]);
   };
 
+  const goToday = () => setView({ screen: 'today' });
   const comingSoon = () => showToast('Coming soon');
+
+  if (view.screen === 'question') {
+    const index = questionSamples.findIndex(
+      (d) => d.question.id === view.questionId
+    );
+    const detail = questionSamples[index];
+    if (detail) {
+      const call = calls.find((c) => c.questionId === detail.question.id);
+      return (
+        <QuestionScreen
+          key={detail.question.id}
+          detail={detail}
+          position={{ index, total: questionSamples.length }}
+          {...(call ? { call } : {})}
+          onBack={goToday}
+          onCall={(side) => {
+            makeCall(detail.question.id, side);
+            goToday();
+          }}
+        />
+      );
+    }
+  }
 
   return (
     <TodayScreen
       today={today}
       now={NOW}
-      onOpenQuestion={comingSoon}
+      onOpenQuestion={(questionId) =>
+        setView({ screen: 'question', questionId })
+      }
       onCall={makeCall}
       onOpenResults={comingSoon}
       onLeaderboard={comingSoon}

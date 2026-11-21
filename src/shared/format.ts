@@ -80,3 +80,14 @@ export const formatWeekday = (date: string): string =>
   new Intl.DateTimeFormat('en-US', { weekday: 'long', timeZone: 'UTC' }).format(
     new Date(`${date}T12:00:00Z`)
   );
+
+export const formatHourShort = (at: string, timeZone: string): string => {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    hour: 'numeric',
+    hour12: true,
+    timeZone,
+  }).formatToParts(new Date(at));
+  const hour = parts.find((p) => p.type === 'hour')?.value ?? '';
+  const period = parts.find((p) => p.type === 'dayPeriod')?.value ?? '';
+  return `${hour}${period.charAt(0).toLowerCase()}`;
+};

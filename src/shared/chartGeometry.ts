@@ -79,3 +79,16 @@ export const rangeOf = (points: ReadonlyArray<CrowdPoint>): TimeRange | null => 
   if (!first || !last) return null;
   return { start: first.at, end: last.at };
 };
+
+const HOUR_MS = 3_600_000;
+
+export const hourlyTicks = (range: TimeRange, stepHours: number): string[] => {
+  const end = Date.parse(range.end);
+  const step = stepHours * HOUR_MS;
+  const ticks: string[] = [];
+  let t = Math.ceil(Date.parse(range.start) / HOUR_MS) * HOUR_MS;
+  for (; t <= end; t += step) {
+    ticks.push(new Date(t).toISOString());
+  }
+  return ticks;
+};

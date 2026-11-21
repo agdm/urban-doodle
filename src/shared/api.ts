@@ -1,6 +1,8 @@
 import type {
   Call,
+  CallMarker,
   CrowdPoint,
+  CrowdSeries,
   PlayerStats,
   Question,
   Rank,
@@ -44,4 +46,14 @@ export type TodayResponse = {
   yesterday: ScoredCall[];
   playersToday: number;
   subRank?: Rank;
+};
+
+export type QuestionResponse = {
+  type: 'question';
+  question: Question;
+  // The subreddit crowd's current yes %, which sets the call prices.
+  yesPct: number;
+  subreddit: CrowdSeries;
+  all: CrowdSeries;
+  markers: CallMarker[];
 };

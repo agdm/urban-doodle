@@ -1,4 +1,4 @@
-import type { TodayResponse } from '../../shared/api';
+import type { QuestionResponse, TodayResponse } from '../../shared/api';
 import type {
   AccuracyEntry,
   Call,
@@ -152,3 +152,21 @@ export const todaySample: TodayResponse = {
   playersToday: 2184,
   subRank: { position: 3, of: 41, scope: { kind: 'subreddit', name: 'Denver' } },
 };
+
+const callCounts: Record<string, number> = { 'q-den': 418, 'q-sea': 296, 'q-san': 133 };
+
+export const questionSamples: QuestionResponse[] = questions.map((question) => {
+  const crowd = crowdByQuestion[question.id];
+  return {
+    type: 'question',
+    question,
+    yesPct: crowd?.yesPct ?? 50,
+    subreddit: {
+      scope: { kind: 'subreddit', name: question.city.name.replace(/\s/g, '') },
+      points: crowd?.trend ?? [],
+      callCount: callCounts[question.id] ?? 0,
+    },
+    all: { scope: { kind: 'all' }, points: allRedditSeries, callCount: 2184 },
+    markers: question.id === 'q-den' ? denverMarkers : [],
+  };
+});

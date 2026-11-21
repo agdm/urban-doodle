@@ -7,6 +7,7 @@ import {
   formatMeasurement,
   formatScope,
   formatForecast,
+  formatHourShort,
   formatLine,
   formatSignedPoints,
   formatShortDate,
@@ -56,4 +57,10 @@ test('formatLine, formatForecast and formatWeatherDate produce display strings',
 test('formatShortDate and formatWeekday name the calendar day in any time zone', () => {
   assert.equal(formatShortDate('2026-11-13'), 'Fri, Nov 13');
   assert.equal(formatWeekday('2026-11-14'), 'Saturday');
+});
+
+test('formatHourShort gives a compact local hour like 7a or 4p', () => {
+  assert.equal(formatHourShort('2026-11-13T14:00:00Z', 'America/Denver'), '7a');
+  assert.equal(formatHourShort('2026-11-13T23:00:00Z', 'America/Denver'), '4p');
+  assert.equal(formatHourShort('2026-11-13T19:00:00Z', 'America/Denver'), '12p');
 });
