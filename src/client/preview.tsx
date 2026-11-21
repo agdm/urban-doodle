@@ -1,4 +1,6 @@
 // Temporary: remove with its devvit.json entrypoint and the splash button.
+import './index.css';
+
 import { StrictMode, useState, type ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { crowdStance, payoutFor, priceFor, tallyDay } from '../shared/scoring';

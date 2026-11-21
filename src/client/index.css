@@ -1,1 +1,44 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/space-grotesk';
+
+/* Design tokens from the design canvas. Also usable as Tailwind utilities. */
+@theme {
+  --font-sans: 'Inter Variable', system-ui, sans-serif;
+  --font-display: 'Space Grotesk Variable', 'Inter Variable', sans-serif;
+
+  --color-ink: #0e1a2b;
+  --color-muted: #4a5a6e;
+  --color-ink-subtle: #b8c4d2;
+  --color-page: #f3f6f9;
+  --color-surface: #ffffff;
+  --color-line: #dce3ea;
+  --color-line-soft: #eef2f6;
+
+  --color-over: #c2410c;
+  --color-over-soft: #fff1e7;
+  --color-over-strong: #9a3412;
+  --color-over-light: #fdba74;
+  --color-under: #1d4ed8;
+  --color-under-soft: #e8f0fe;
+  --color-under-strong: #1e40af;
+  --color-neutral-soft: #e6ebf0;
+  --color-neutral-strong: #3f4d5e;
+  --color-series-secondary: #8a99ab;
+
+  --color-win: #15803d;
+  --color-loss: #b91c1c;
+
+  --radius-badge: 4px;
+  --radius-control: 10px;
+  --radius-card: 14px;
+  --radius-panel: 16px;
+}
+
+@layer base {
+  body {
+    background: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+}

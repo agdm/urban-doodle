@@ -1,3 +1,4 @@
+import './CategoryBadge.css';
 import type { QuestionCategory } from '../../shared/types';
 
 const LABELS: Record<QuestionCategory, string> = {

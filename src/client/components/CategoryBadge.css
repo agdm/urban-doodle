@@ -1,0 +1,27 @@
+[data-component='category-badge'] {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: var(--radius-badge);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--color-neutral-strong);
+  background: var(--color-neutral-soft);
+}
+
+[data-component='category-badge'][data-category='hometown'] {
+  color: var(--color-surface);
+  background: var(--color-ink);
+}
+
+[data-component='category-badge'][data-category='rain'] {
+  color: var(--color-under-strong);
+  background: var(--color-under-soft);
+}
+
+[data-component='category-badge'][data-category='wild'] {
+  color: var(--color-over-strong);
+  background: var(--color-over-soft);
+}
