@@ -1,3 +1,4 @@
+import './Countdown.css';
 import { durationUntil, formatDuration } from '../../shared/format';
 
 export type CountdownProps = {

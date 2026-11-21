@@ -1,3 +1,4 @@
+import './SignedPoints.css';
 import { formatSignedPoints, signOf } from '../../shared/format';
 
 export type SignedPointsProps = {

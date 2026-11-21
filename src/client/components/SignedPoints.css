@@ -1,0 +1,13 @@
+[data-component='signed-points'] {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-component='signed-points'][data-sign='positive'] {
+  color: var(--color-win);
+}
+
+[data-component='signed-points'][data-sign='negative'] {
+  color: var(--color-loss);
+}

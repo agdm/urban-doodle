@@ -1,3 +1,4 @@
+import './PointsTotal.css';
 import { formatCount } from '../../shared/format';
 
 export type PointsTotalProps = {

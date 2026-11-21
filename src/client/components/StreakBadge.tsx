@@ -1,3 +1,4 @@
+import './StreakBadge.css';
 export type StreakBadgeProps = {
   days: number;
 };

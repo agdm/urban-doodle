@@ -1,3 +1,4 @@
+import './ResultsTeaser.css';
 import type { DayTally } from '../../shared/scoring';
 import { SignedPoints } from './SignedPoints';
 

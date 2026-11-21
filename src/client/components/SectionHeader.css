@@ -1,0 +1,15 @@
+[data-component='section-header'] {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 16px 8px;
+}
+
+[data-component='section-header'] h2 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}

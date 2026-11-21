@@ -1,0 +1,11 @@
+[data-component='points-total'] [data-part='value'] {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+[data-component='points-total'] [data-part='unit'] {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-muted);
+}

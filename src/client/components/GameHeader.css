@@ -1,0 +1,33 @@
+[data-component='game-header'] {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 16px 12px;
+}
+
+[data-component='game-header'] [data-part='titles'] {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+[data-component='game-header'] h1 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+[data-component='game-header'] p {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+[data-component='game-header'] [data-part='stats'] {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}

@@ -1,0 +1,47 @@
+[data-component='results-teaser'] {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'eyebrow cta'
+    'summary cta';
+  align-items: center;
+  row-gap: 3px;
+  width: calc(100% - 32px);
+  margin: 0 16px 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius-card);
+  background: var(--color-ink);
+  color: var(--color-surface);
+  text-align: left;
+  cursor: pointer;
+}
+
+[data-component='results-teaser'] [data-part='eyebrow'] {
+  grid-area: eyebrow;
+  font-size: 12px;
+  color: var(--color-ink-subtle);
+}
+
+[data-component='results-teaser'] [data-part='summary'] {
+  grid-area: summary;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* On the dark card the points stay white, as in the design. */
+[data-component='results-teaser'] [data-component='signed-points'] {
+  color: inherit;
+  font-weight: inherit;
+}
+
+[data-component='results-teaser'] [data-part='cta'] {
+  grid-area: cta;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-over-light);
+}
+
+[data-component='results-teaser'] [data-part='cta']::after {
+  content: ' \2192';
+}

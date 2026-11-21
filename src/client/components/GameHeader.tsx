@@ -1,3 +1,4 @@
+import './GameHeader.css';
 import type { PlayerStats } from '../../shared/types';
 import { PointsTotal } from './PointsTotal';
 import { StreakBadge } from './StreakBadge';
