@@ -1,0 +1,58 @@
+[data-component='crowd-panel'] {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-panel);
+  background: var(--color-surface);
+}
+
+[data-component='crowd-panel'] [data-part='header'] {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+[data-component='crowd-panel'] [data-part='headline'] {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+[data-component='crowd-panel'] [data-part='eyebrow'] {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+[data-component='crowd-panel'] [data-part='value'] {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-neutral-strong);
+}
+
+[data-component='crowd-panel'] [data-part='value-label'] {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* The crowd's leaning side colors the big number, the chart's main line and the legend. */
+[data-component='crowd-panel'][data-side='yes'] [data-part='value'] {
+  color: var(--color-over);
+}
+
+[data-component='crowd-panel'][data-side='no'] [data-part='value'] {
+  color: var(--color-under);
+}
+
+[data-component='crowd-panel'][data-side='yes'] {
+  --chart-primary: var(--color-over);
+}
+
+[data-component='crowd-panel'][data-side='no'] {
+  --chart-primary: var(--color-under);
+}

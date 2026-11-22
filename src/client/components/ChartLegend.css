@@ -1,0 +1,43 @@
+[data-component='chart-legend'] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+[data-component='chart-legend'] ul {
+  display: contents;
+}
+
+[data-component='chart-legend'] li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+[data-component='chart-legend'] [data-part='swatch'] {
+  width: 16px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--chart-primary, var(--color-neutral-strong));
+}
+
+[data-component='chart-legend'] [data-kind='secondary'] [data-part='swatch'] {
+  height: 0;
+  border-top: 2px dashed var(--color-series-secondary);
+  border-radius: 0;
+  background: none;
+}
+
+[data-component='chart-legend'] [data-kind='marker'] [data-part='swatch'] {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  opacity: 0.55;
+}
+
+[data-component='chart-legend'] [data-part='trailing'] {
+  margin-left: auto;
+}

@@ -1,3 +1,4 @@
+import './CallButton.css';
 import { sideLabel, type CrowdStance, type Payout } from '../../shared/scoring';
 import type { QuestionKind, Side } from '../../shared/types';
 

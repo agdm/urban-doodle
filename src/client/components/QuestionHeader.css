@@ -1,0 +1,26 @@
+[data-component='question-header'] {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 16px 8px;
+}
+
+[data-component='question-header'] [data-part='meta'] {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+[data-component='question-header'] [data-part='context'],
+[data-component='question-header'] [data-part='forecast'] {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+[data-component='question-header'] h1 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.4px;
+}

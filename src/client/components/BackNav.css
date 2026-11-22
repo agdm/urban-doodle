@@ -1,0 +1,42 @@
+[data-component='back-nav'] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 16px;
+  min-height: 72px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-line);
+}
+
+[data-component='back-nav'] button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-under);
+  cursor: pointer;
+}
+
+[data-component='back-nav'] button:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+[data-component='back-nav'] [data-part='chevron'] {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+[data-component='back-nav'] [data-part='trailing'] {
+  font-size: 13px;
+  color: var(--color-muted);
+}

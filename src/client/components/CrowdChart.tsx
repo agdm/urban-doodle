@@ -1,3 +1,4 @@
+import './CrowdChart.css';
 import {
   placeMarkers,
   plotArea,

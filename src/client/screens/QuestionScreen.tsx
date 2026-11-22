@@ -1,3 +1,4 @@
+import './QuestionScreen.css';
 import { useState } from 'react';
 import type { QuestionResponse } from '../../shared/api';
 import { hourlyTicks, rangeOf } from '../../shared/chartGeometry';
@@ -18,6 +19,7 @@ import {
   CrowdChart,
   CrowdPanel,
   QuestionHeader,
+  SectionHeader,
   SegmentedControl,
   type LegendItem,
 } from '../components';
@@ -47,7 +49,8 @@ export const QuestionScreen = ({
   const shown = scope === 'subreddit' ? detail.subreddit : detail.all;
   const other = scope === 'subreddit' ? detail.all : detail.subreddit;
   const shownPct = latestPct(shown);
-  const shownSide = leaningSide(shownPct) ?? 'yes';
+  const leaning = leaningSide(shownPct);
+  const shownSide = leaning ?? 'yes';
   const range = rangeOf(detail.subreddit.points);
   const sides: Side[] = ['yes', 'no'];
   const yesLabel = sideLabel(question.kind, 'yes');
@@ -74,6 +77,7 @@ export const QuestionScreen = ({
         eyebrow={`${formatScope(shown.scope)} says`}
         value={`${sidePct(shownPct, shownSide)}%`}
         valueLabel={sideLabel(question.kind, shownSide)}
+        {...(leaning ? { side: leaning } : {})}
         controls={
           <SegmentedControl
             label="Crowd"
@@ -121,6 +125,7 @@ export const QuestionScreen = ({
         />
       </CrowdPanel>
       <section data-part="calls">
+        <SectionHeader title="Make your call" />
         {sides.map((side) => {
           const price = priceFor(detail.yesPct, side);
           return (
@@ -136,6 +141,10 @@ export const QuestionScreen = ({
             />
           );
         })}
+        <p data-part="footnote">
+          Your price is the crowd's % on your side right now. Calls against the
+          crowd pay more.
+        </p>
       </section>
     </main>
   );

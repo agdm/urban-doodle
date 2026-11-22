@@ -1,3 +1,4 @@
+import './QuestionHeader.css';
 import { formatForecast, formatWeatherDate } from '../../shared/format';
 import type { Question } from '../../shared/types';
 import { CategoryBadge } from './CategoryBadge';

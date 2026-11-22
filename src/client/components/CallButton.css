@@ -1,0 +1,60 @@
+[data-component='call-button'] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 64px;
+  padding: 14px 16px;
+  border-radius: var(--radius-card);
+  color: var(--color-surface);
+  text-align: left;
+  cursor: pointer;
+}
+
+[data-component='call-button'][data-side='yes'] {
+  background: var(--color-over);
+}
+
+[data-component='call-button'][data-side='no'] {
+  background: var(--color-under);
+}
+
+[data-component='call-button']:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+[data-component='call-button']:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+[data-component='call-button'] [data-part='main'],
+[data-component='call-button'] [data-part='payout'] {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+[data-component='call-button'] [data-part='title'] {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+[data-component='call-button'] [data-part='stance'] {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+[data-component='call-button'] [data-part='payout'] {
+  align-items: flex-end;
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-component='call-button'] [data-part='risk'] {
+  font-weight: 500;
+  opacity: 0.9;
+}

@@ -1,0 +1,60 @@
+/* --chart-primary (set by a parent such as CrowdPanel) colors the main line. */
+[data-component='crowd-chart'] {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+[data-component='crowd-chart'] text {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  fill: var(--color-muted);
+}
+
+[data-component='crowd-chart'] [data-part='pct-grid'] line {
+  stroke: var(--color-line-soft);
+}
+
+[data-component='crowd-chart'] [data-part='pct-grid'] [data-pct='0'] line {
+  stroke: var(--color-line);
+}
+
+[data-component='crowd-chart'] [data-part='pct-grid'] [data-pct='50'] line {
+  stroke: var(--color-ink-subtle);
+  stroke-dasharray: 4 4;
+}
+
+[data-component='crowd-chart'] [data-part='series'] {
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+[data-component='crowd-chart'] [data-emphasis='primary'] {
+  stroke: var(--chart-primary, var(--color-neutral-strong));
+  stroke-width: 3;
+}
+
+[data-component='crowd-chart'] [data-emphasis='secondary'] {
+  stroke: var(--color-series-secondary);
+  stroke-width: 2;
+  stroke-dasharray: 5 4;
+}
+
+[data-component='crowd-chart'] [data-part='markers'] circle {
+  opacity: 0.55;
+}
+
+[data-component='crowd-chart'] [data-side='yes'] {
+  fill: var(--color-over);
+}
+
+[data-component='crowd-chart'] [data-side='no'] {
+  fill: var(--color-under);
+}
+
+[data-component='crowd-chart'] [data-part='latest'] {
+  fill: var(--chart-primary, var(--color-neutral-strong));
+  stroke: var(--color-surface);
+  stroke-width: 2.5;
+}
