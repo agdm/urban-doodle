@@ -1,3 +1,4 @@
+import './TodayScreen.css';
 import type { TodayResponse } from '../../shared/api';
 import { formatShortDate, formatWeekday } from '../../shared/format';
 import { tallyDay } from '../../shared/scoring';

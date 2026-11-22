@@ -1,0 +1,17 @@
+[data-screen='today'] {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+[data-screen='today'] [data-part='calls'] {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 16px 16px;
+}
+
+[data-screen='today'] [data-part='calls'] > [data-component='section-header'] {
+  padding: 0;
+  margin-bottom: -4px;
+}

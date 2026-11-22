@@ -1,3 +1,4 @@
+import './SideButton.css';
 import { sideLabel, sidePct } from '../../shared/scoring';
 import type { QuestionKind, Side } from '../../shared/types';
 

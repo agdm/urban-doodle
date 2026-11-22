@@ -1,0 +1,23 @@
+[data-component='sparkline'] {
+  flex-shrink: 0;
+}
+
+[data-component='sparkline'] [data-part='baseline'] {
+  stroke: var(--color-line);
+  stroke-dasharray: 3 3;
+}
+
+[data-component='sparkline'] [data-part='line'] {
+  stroke: var(--color-series-secondary);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+[data-component='sparkline'][data-leaning='yes'] [data-part='line'] {
+  stroke: var(--color-over);
+}
+
+[data-component='sparkline'][data-leaning='no'] [data-part='line'] {
+  stroke: var(--color-under);
+}

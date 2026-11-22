@@ -1,3 +1,4 @@
+import './Sparkline.css';
 import {
   plotArea,
   polylinePoints,

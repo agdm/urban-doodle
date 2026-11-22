@@ -1,3 +1,4 @@
+import './QuestionCard.css';
 import { formatQuestionContext } from '../../shared/format';
 import type { CrowdPoint, Question, Side } from '../../shared/types';
 import { CategoryBadge } from './CategoryBadge';

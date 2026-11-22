@@ -1,3 +1,4 @@
+import './StatsFooter.css';
 import { formatCount, formatScope } from '../../shared/format';
 import type { Rank } from '../../shared/types';
 

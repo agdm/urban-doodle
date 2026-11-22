@@ -1,0 +1,64 @@
+[data-component='question-card'] {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+[data-component='question-card'] [data-part='header'] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 12px;
+  row-gap: 4px;
+  align-items: start;
+}
+
+[data-component='question-card'] [data-part='meta'] {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+[data-component='question-card'] [data-part='context'] {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+[data-component='question-card'] h3 {
+  grid-column: 1;
+}
+
+[data-component='question-card'] h3 button {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: left;
+  cursor: pointer;
+}
+
+[data-component='question-card'] h3 button:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+[data-component='question-card'] [data-component='sparkline'] {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+[data-component='question-card'] [data-part='sides'] {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+/* After a call, the side you didn't take fades back. */
+[data-component='question-card'][data-locked='true']
+  [data-component='side-button'][aria-pressed='false'] {
+  opacity: 0.45;
+}

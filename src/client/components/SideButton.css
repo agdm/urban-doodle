@@ -1,0 +1,50 @@
+[data-component='side-button'] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: var(--radius-control);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+[data-component='side-button'][data-side='yes'] {
+  color: var(--color-over-strong);
+  background: var(--color-over-soft);
+}
+
+[data-component='side-button'][data-side='no'] {
+  color: var(--color-under-strong);
+  background: var(--color-under-soft);
+}
+
+[data-component='side-button'] [data-part='pct'] {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-component='side-button']:disabled {
+  cursor: default;
+}
+
+/* The side you called. */
+[data-component='side-button'][aria-pressed='true'] {
+  color: var(--color-surface);
+}
+
+[data-component='side-button'][data-side='yes'][aria-pressed='true'] {
+  background: var(--color-over);
+}
+
+[data-component='side-button'][data-side='no'][aria-pressed='true'] {
+  background: var(--color-under);
+}
+
+[data-component='side-button']:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
