@@ -58,3 +58,43 @@
   stroke: var(--color-surface);
   stroke-width: 2.5;
 }
+
+/* Settled: the winning half is tinted, labeled in the winner's color. */
+[data-component='crowd-chart'] [data-part='outcome'] text {
+  font-weight: 600;
+}
+
+[data-component='crowd-chart'] [data-part='outcome'][data-side='yes'] rect {
+  fill: var(--color-over-soft);
+}
+
+[data-component='crowd-chart'] [data-part='outcome'][data-side='yes'] text {
+  fill: var(--color-over-strong);
+}
+
+[data-component='crowd-chart'] [data-part='outcome'][data-side='no'] rect {
+  fill: var(--color-under-soft);
+}
+
+[data-component='crowd-chart'] [data-part='outcome'][data-side='no'] text {
+  fill: var(--color-under-strong);
+}
+
+/* Your call: a ringed dot with a label, both in your side's color. */
+[data-component='crowd-chart'] [data-part='you'] circle {
+  stroke: var(--color-surface);
+  stroke-width: 3;
+}
+
+[data-component='crowd-chart'] [data-part='you'] text {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+[data-component='crowd-chart'] [data-part='you'][data-side='yes'] text {
+  fill: var(--color-over);
+}
+
+[data-component='crowd-chart'] [data-part='you'][data-side='no'] text {
+  fill: var(--color-under);
+}

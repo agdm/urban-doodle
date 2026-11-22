@@ -1,3 +1,4 @@
+import './CrowdComparison.css';
 import { formatFraction } from '../../shared/format';
 import type { AccuracyEntry } from '../../shared/types';
 import { StatTile } from './StatTile';

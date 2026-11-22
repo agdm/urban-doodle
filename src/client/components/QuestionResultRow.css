@@ -1,0 +1,33 @@
+/* Rows sit in a list; the parent screen draws the card around them. */
+[data-component='question-result-row'] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--color-line-soft);
+}
+
+[data-component='question-result-row']:last-child {
+  border-bottom: 0;
+}
+
+[data-component='question-result-row'] [data-part='text'] {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+[data-component='question-result-row'] [data-part='title'] {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+[data-component='question-result-row'] [data-part='detail'] {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+[data-component='question-result-row'] [data-component='signed-points'] {
+  font-size: 18px;
+}

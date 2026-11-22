@@ -1,3 +1,4 @@
+import './LockConfirmation.css';
 import { formatLine } from '../../shared/format';
 import { sideLabel } from '../../shared/scoring';
 import type { Call, Question } from '../../shared/types';

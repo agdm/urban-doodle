@@ -1,0 +1,44 @@
+/* A footer bar with one dark button, pinned to the bottom of its screen. */
+[data-component='primary-action'] {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+  padding: 16px;
+  border-top: 1px solid var(--color-line);
+  background: var(--color-surface);
+}
+
+[data-component='primary-action'] button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  border-radius: var(--radius-card);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-surface);
+  background: var(--color-ink);
+  cursor: pointer;
+}
+
+[data-component='primary-action'] button::after {
+  content: '\2192';
+}
+
+[data-component='primary-action'] button:focus-visible {
+  outline: 2px solid var(--color-under);
+  outline-offset: 2px;
+}
+
+[data-component='primary-action'] button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+[data-component='primary-action'] [data-part='note'] {
+  font-size: 12px;
+  text-align: center;
+  color: var(--color-muted);
+}

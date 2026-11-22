@@ -1,3 +1,4 @@
+import './FeaturedResult.css';
 import type { ReactNode } from 'react';
 import { formatForecast, formatLine, formatMeasurement } from '../../shared/format';
 import { sideLabel } from '../../shared/scoring';

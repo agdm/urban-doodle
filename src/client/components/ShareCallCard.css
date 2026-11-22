@@ -1,0 +1,56 @@
+[data-component='share-call-card'] {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+[data-component='share-call-card'] label {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+[data-component='share-call-card'] textarea {
+  min-height: 64px;
+  padding: 10px 12px;
+  border-radius: var(--radius-control);
+  font-size: 14px;
+  line-height: 1.4;
+  background: var(--color-page);
+  resize: vertical;
+}
+
+[data-component='share-call-card'] textarea:focus-visible {
+  outline: 2px solid var(--color-under);
+  outline-offset: 0;
+}
+
+[data-component='share-call-card'] button {
+  min-height: 44px;
+  border: 1px solid var(--color-under);
+  border-radius: var(--radius-control);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-under);
+  background: var(--color-surface);
+  cursor: pointer;
+}
+
+[data-component='share-call-card'] button:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+[data-component='share-call-card'] button:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+[data-component='share-call-card'][data-status='shared'] button {
+  border-color: var(--color-win);
+  color: var(--color-win);
+  opacity: 1;
+}

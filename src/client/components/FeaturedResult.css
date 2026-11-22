@@ -1,0 +1,49 @@
+[data-component='featured-result'] {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-panel);
+  background: var(--color-surface);
+  /* Once settled, the crowd line steps back so your marker and the outcome lead. */
+  --chart-primary: var(--color-series-secondary);
+}
+
+[data-component='featured-result'] [data-part='header'] {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+[data-component='featured-result'] [data-part='text'] {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+[data-component='featured-result'] [data-part='context'] {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+[data-component='featured-result'] h2,
+[data-component='featured-result']
+  [data-part='header']
+  > [data-component='signed-points'] {
+  font-family: var(--font-display);
+  font-size: 20px;
+}
+
+[data-component='featured-result'] h2 {
+  font-weight: 600;
+}
+
+[data-component='featured-result'] h2 [data-side='yes'] {
+  color: var(--color-over);
+}
+
+[data-component='featured-result'] h2 [data-side='no'] {
+  color: var(--color-under);
+}

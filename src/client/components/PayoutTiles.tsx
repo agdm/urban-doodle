@@ -1,3 +1,4 @@
+import './PayoutTiles.css';
 import { otherSide, sideLabel, type Payout } from '../../shared/scoring';
 import type { QuestionKind, Side } from '../../shared/types';
 import { SignedPoints } from './SignedPoints';

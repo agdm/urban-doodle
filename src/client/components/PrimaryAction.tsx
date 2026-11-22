@@ -1,3 +1,4 @@
+import './PrimaryAction.css';
 export type PrimaryActionProps = {
   label: string;
   onClick: () => void;

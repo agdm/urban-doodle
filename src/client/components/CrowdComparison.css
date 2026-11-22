@@ -1,0 +1,44 @@
+[data-component='crowd-comparison'] {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+[data-component='crowd-comparison'] h2 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+[data-component='crowd-comparison'] [data-part='tiles'] {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+/* Compact tiles here: score on top, label underneath. */
+[data-component='crowd-comparison'] [data-component='stat-tile'] {
+  flex-direction: column-reverse;
+  align-items: center;
+  padding: 10px 4px;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: var(--color-page);
+}
+
+[data-component='crowd-comparison']
+  [data-component='stat-tile']
+  [data-part='value'] {
+  font-size: 20px;
+}
+
+[data-component='crowd-comparison'] [data-part='footnote'] {
+  font-size: 13px;
+  color: var(--color-muted);
+}

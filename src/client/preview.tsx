@@ -76,18 +76,8 @@ export const Preview = () => {
 
   return (
     <main>
-      {/* SVG strokes default to none; this only makes the charts visible here. */}
-      <style>{`
-        svg { max-width: 360px; display: block; overflow: visible; }
-        svg text { font: 11px system-ui, sans-serif; }
-        svg line, svg polyline { stroke: #999; stroke-width: 1; }
-        svg [data-emphasis="primary"], [data-component="sparkline"] [data-part="line"] { stroke: #000; stroke-width: 2.5; }
-        svg [data-emphasis="secondary"] { stroke-dasharray: 5 4; }
-        svg [data-part="outcome"] rect { fill: #e5e5e5; }
-        svg [data-part="markers"] circle { opacity: 0.5; }
-      `}</style>
       <h1>Highball component preview</h1>
-      <p>Unstyled. Sample data from the design canvas. Clicks log to the console.</p>
+      <p>Sample data from the design canvas. Clicks log to the console.</p>
 
       <Section name="CategoryBadge">
         <CategoryBadge category="hometown" /> <CategoryBadge category="rain" />{' '}

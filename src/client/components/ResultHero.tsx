@@ -1,3 +1,4 @@
+import './ResultHero.css';
 import { formatScope } from '../../shared/format';
 import type { DayTally } from '../../shared/scoring';
 import type { PlayerStats } from '../../shared/types';

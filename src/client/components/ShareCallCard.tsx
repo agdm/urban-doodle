@@ -1,3 +1,4 @@
+import './ShareCallCard.css';
 import { useId } from 'react';
 
 export type ShareCallCardProps = {

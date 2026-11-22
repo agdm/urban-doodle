@@ -1,0 +1,21 @@
+[data-component='stat-tile'] {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+[data-component='stat-tile'] [data-part='label'] {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+[data-component='stat-tile'] [data-part='value'] {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}

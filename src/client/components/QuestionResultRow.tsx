@@ -1,3 +1,4 @@
+import './QuestionResultRow.css';
 import { formatMeasurement } from '../../shared/format';
 import { sideLabel } from '../../shared/scoring';
 import type { ScoredCall } from '../../shared/types';

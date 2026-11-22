@@ -1,0 +1,60 @@
+[data-component='result-hero'] {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 22px 16px 20px;
+  color: var(--color-surface);
+  background: var(--color-ink);
+}
+
+[data-component='result-hero'] [data-part='eyebrow'] {
+  font-size: 13px;
+  color: var(--color-ink-subtle);
+}
+
+[data-component='result-hero'] [data-part='score'] {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+[data-component='result-hero'] [data-part='points'] {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* On the dark hero the total reads in white, not win/loss colors. */
+[data-component='result-hero'] [data-component='signed-points'] {
+  color: inherit;
+}
+
+[data-component='result-hero'] [data-part='unit'] {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-ink-subtle);
+}
+
+[data-component='result-hero'] [data-part='standing'] {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-size: 13px;
+}
+
+[data-component='result-hero'] [data-component='streak-badge'] {
+  font-size: 13px;
+  color: var(--color-over-light);
+}
+
+[data-component='result-hero'] [data-part='rank'] {
+  color: var(--color-ink-subtle);
+}
+
+[data-component='result-hero'] [data-part='summary'] {
+  font-size: 14px;
+  color: var(--color-line-soft);
+}

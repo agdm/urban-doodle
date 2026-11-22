@@ -1,0 +1,51 @@
+[data-component='lock-confirmation'] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 16px 4px;
+  text-align: center;
+  --lock-color: var(--color-over);
+}
+
+[data-component='lock-confirmation'][data-side='no'] {
+  --lock-color: var(--color-under);
+}
+
+[data-component='lock-confirmation'] [data-part='icon'] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-surface);
+  background: var(--lock-color);
+}
+
+[data-component='lock-confirmation'] [data-part='eyebrow'] {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+[data-component='lock-confirmation'] h1 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+[data-component='lock-confirmation'] [data-part='choice'] {
+  color: var(--lock-color);
+}
+
+[data-component='lock-confirmation'] [data-part='detail'] {
+  font-size: 13px;
+  color: var(--color-muted);
+}
