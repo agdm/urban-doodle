@@ -1,9 +1,12 @@
+import { sideLabel } from './scoring.ts';
 import type {
   CrowdScope,
   Measurement,
   Question,
   SettlementRule,
+  Side,
   Unit,
+  WeatherMetric,
 } from './types.ts';
 
 export const formatSignedPoints = (points: number): string =>
@@ -90,4 +93,30 @@ export const formatHourShort = (at: string, timeZone: string): string => {
   const hour = parts.find((p) => p.type === 'hour')?.value ?? '';
   const period = parts.find((p) => p.type === 'dayPeriod')?.value ?? '';
   return `${hour}${period.charAt(0).toLowerCase()}`;
+};
+
+// What a call on `side` means, e.g. "Under 48.5°F" or "Yes".
+export const formatChoice = (question: Question, side: Side): string =>
+  question.kind === 'overUnder'
+    ? `${sideLabel(question.kind, side)} ${formatLine(question.rule)}`
+    : sideLabel(question.kind, side);
+
+const METRIC_WORD: Record<WeatherMetric, string> = {
+  highTemp: 'high',
+  lowTemp: 'low',
+  precipitation: 'rain',
+};
+
+// A short name for a question, e.g. "Seattle rain".
+export const formatQuestionShort = (question: Question): string =>
+  `${question.city.name} ${METRIC_WORD[question.rule.metric]}`;
+
+// When settlement runs, in US Eastern time, e.g. "settles Sunday around 7am ET".
+export const formatSettles = (at: string): string => {
+  const timeZone = 'America/New_York';
+  const weekday = new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',
+    timeZone,
+  }).format(new Date(at));
+  return `settles ${weekday} around ${formatHourShort(at, timeZone)}m ET`;
 };

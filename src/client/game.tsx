@@ -3,9 +3,11 @@ import './index.css';
 import { StrictMode, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { showToast } from '@devvit/web/client';
+import { formatQuestionShort } from '../shared/format';
 import { priceFor } from '../shared/scoring';
 import type { Call, Side } from '../shared/types';
 import { NOW, questionSamples, todaySample } from './preview/fixtures';
+import { LockedScreen } from './screens/LockedScreen';
 import { QuestionScreen } from './screens/QuestionScreen';
 import { TodayScreen } from './screens/TodayScreen';
 
@@ -38,17 +40,39 @@ export const App = () => {
     const detail = questionSamples[index];
     if (detail) {
       const call = calls.find((c) => c.questionId === detail.question.id);
+      const position = { index, total: questionSamples.length };
+      if (call) {
+        // The next question, in order and wrapping around, that has no call yet.
+        const next = questionSamples
+          .slice(index + 1)
+          .concat(questionSamples.slice(0, index))
+          .find((d) => !calls.some((c) => c.questionId === d.question.id));
+        return (
+          <LockedScreen
+            key={detail.question.id}
+            detail={detail}
+            call={call}
+            position={position}
+            nextLabel={
+              next ? `Next: ${formatQuestionShort(next.question)}` : 'Back to Today'
+            }
+            onBack={goToday}
+            onNext={() =>
+              next
+                ? setView({ screen: 'question', questionId: next.question.id })
+                : goToday()
+            }
+            onShare={() => showToast('Posting comments is coming soon')}
+          />
+        );
+      }
       return (
         <QuestionScreen
           key={detail.question.id}
           detail={detail}
-          position={{ index, total: questionSamples.length }}
-          {...(call ? { call } : {})}
+          position={position}
           onBack={goToday}
-          onCall={(side) => {
-            makeCall(detail.question.id, side);
-            goToday();
-          }}
+          onCall={(side) => makeCall(detail.question.id, side)}
         />
       );
     }

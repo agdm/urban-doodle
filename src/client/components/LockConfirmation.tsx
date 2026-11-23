@@ -1,6 +1,5 @@
 import './LockConfirmation.css';
-import { formatLine } from '../../shared/format';
-import { sideLabel } from '../../shared/scoring';
+import { formatChoice } from '../../shared/format';
 import type { Call, Question } from '../../shared/types';
 
 export type LockConfirmationProps = {
@@ -14,11 +13,7 @@ export const LockConfirmation = ({
   call,
   settlesLabel,
 }: LockConfirmationProps) => {
-  const choice =
-    question.kind === 'overUnder'
-      ? `${sideLabel(question.kind, call.side)} ${formatLine(question.rule)}`
-      : sideLabel(question.kind, call.side);
-
+  const choice = formatChoice(question, call.side);
   return (
     <header data-component="lock-confirmation" data-side={call.side}>
       <span data-part="icon" aria-hidden="true">✓</span>

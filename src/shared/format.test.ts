@@ -7,13 +7,17 @@ import {
   formatMeasurement,
   formatScope,
   formatForecast,
+  formatChoice,
   formatHourShort,
+  formatQuestionShort,
+  formatSettles,
   formatLine,
   formatSignedPoints,
   formatShortDate,
   formatWeatherDate,
   formatWeekday,
 } from './format.ts';
+import type { Question } from './types.ts';
 
 test('formatSignedPoints adds a + to positive numbers', () => {
   assert.equal(formatSignedPoints(62), '+62');
@@ -63,4 +67,37 @@ test('formatHourShort gives a compact local hour like 7a or 4p', () => {
   assert.equal(formatHourShort('2026-11-13T14:00:00Z', 'America/Denver'), '7a');
   assert.equal(formatHourShort('2026-11-13T23:00:00Z', 'America/Denver'), '4p');
   assert.equal(formatHourShort('2026-11-13T19:00:00Z', 'America/Denver'), '12p');
+});
+
+const question: Question = {
+  id: 'q',
+  weatherDate: '2026-11-14',
+  city: { id: 'den', name: 'Denver', timeZone: 'America/Denver' },
+  kind: 'overUnder',
+  category: 'hometown',
+  rule: { metric: 'highTemp', comparison: 'gt', value: 48.5, unit: 'F' },
+  forecast: { value: 49, unit: 'F' },
+  prompt: 'High over 48.5°F?',
+  headline: "Will Denver's high be over 48.5°F?",
+  opensAt: '2026-11-13T14:00:00Z',
+  closesAt: '2026-11-14T07:00:00Z',
+  settlesAt: '2026-11-15T12:00:00Z',
+};
+
+test('formatChoice adds the line to Over/Under calls only', () => {
+  assert.equal(formatChoice(question, 'no'), 'Under 48.5°F');
+  assert.equal(formatChoice({ ...question, kind: 'yesNo' }, 'yes'), 'Yes');
+});
+
+test('formatQuestionShort names the city and what is measured', () => {
+  assert.equal(formatQuestionShort(question), 'Denver high');
+  const rain: Question = {
+    ...question,
+    rule: { ...question.rule, metric: 'precipitation' },
+  };
+  assert.equal(formatQuestionShort(rain), 'Denver rain');
+});
+
+test('formatSettles gives the Eastern weekday and hour', () => {
+  assert.equal(formatSettles('2026-11-15T12:00:00Z'), 'settles Sunday around 7am ET');
 });
