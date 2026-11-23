@@ -60,7 +60,7 @@ export const LockedScreen = ({
       <LockConfirmation
         question={question}
         call={call}
-        settlesLabel={formatSettles(question.settlesAt)}
+        settlesLabel={`settles ${formatSettles(question.settlesAt)}`}
       />
       <PayoutTiles
         kind={question.kind}

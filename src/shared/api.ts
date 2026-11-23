@@ -1,7 +1,9 @@
 import type {
+  AccuracyEntry,
   Call,
   CallMarker,
   CrowdPoint,
+  CrowdScope,
   CrowdSeries,
   PlayerStats,
   Question,
@@ -56,4 +58,19 @@ export type QuestionResponse = {
   subreddit: CrowdSeries;
   all: CrowdSeries;
   markers: CallMarker[];
+};
+
+export type ResultsResponse = {
+  type: 'results';
+  // The day the settled calls were about, YYYY-MM-DD.
+  weatherDate: string;
+  // The first entry is the featured call (your hometown question when you made one).
+  scored: ScoredCall[];
+  // The subreddit crowd for the featured call's question, while it was open.
+  featuredCrowd?: CrowdSeries;
+  stats: PlayerStats;
+  // You, your subreddit's crowd and all of Reddit, scored against the outcomes.
+  accuracy: AccuracyEntry[];
+  // The subreddit crowd that got the most questions right.
+  sharpest?: { scope: CrowdScope; correct: number; total: number };
 };

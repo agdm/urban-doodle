@@ -111,12 +111,12 @@ const METRIC_WORD: Record<WeatherMetric, string> = {
 export const formatQuestionShort = (question: Question): string =>
   `${question.city.name} ${METRIC_WORD[question.rule.metric]}`;
 
-// When settlement runs, in US Eastern time, e.g. "settles Sunday around 7am ET".
+// When settlement runs, in US Eastern time, e.g. "Sunday around 7am ET".
 export const formatSettles = (at: string): string => {
   const timeZone = 'America/New_York';
   const weekday = new Intl.DateTimeFormat('en-US', {
     weekday: 'long',
     timeZone,
   }).format(new Date(at));
-  return `settles ${weekday} around ${formatHourShort(at, timeZone)}m ET`;
+  return `${weekday} around ${formatHourShort(at, timeZone)}m ET`;
 };

@@ -99,5 +99,5 @@ test('formatQuestionShort names the city and what is measured', () => {
 });
 
 test('formatSettles gives the Eastern weekday and hour', () => {
-  assert.equal(formatSettles('2026-11-15T12:00:00Z'), 'settles Sunday around 7am ET');
+  assert.equal(formatSettles('2026-11-15T12:00:00Z'), 'Sunday around 7am ET');
 });

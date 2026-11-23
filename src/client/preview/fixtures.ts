@@ -1,4 +1,4 @@
-import type { QuestionResponse, TodayResponse } from '../../shared/api';
+import type { QuestionResponse, ResultsResponse, TodayResponse } from '../../shared/api';
 import type {
   AccuracyEntry,
   Call,
@@ -170,3 +170,17 @@ export const questionSamples: QuestionResponse[] = questions.map((question) => {
     markers: question.id === 'q-den' ? denverMarkers : [],
   };
 });
+
+export const resultsSample: ResultsResponse = {
+  type: 'results',
+  weatherDate: '2026-11-12',
+  scored: yesterdayResults,
+  featuredCrowd: {
+    scope: { kind: 'subreddit', name: 'Denver' },
+    points: series('2026-11-12T14:00:00Z', step, [50, 54, 56, 54, 59, 60, 58, 62, 64]),
+    callCount: 402,
+  },
+  stats: { ...playerStats, streakDays: 6 },
+  accuracy,
+  sharpest: { scope: { kind: 'subreddit', name: 'Seattle' }, correct: 3, total: 3 },
+};

@@ -1,0 +1,20 @@
+[data-screen='results'] {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+[data-screen='results'] > [data-component='featured-result'] {
+  margin: 14px 16px 0;
+}
+
+[data-screen='results'] > [data-part='rows'] {
+  margin: 12px 16px 0;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+[data-screen='results'] > [data-component='crowd-comparison'] {
+  margin: 12px 16px 16px;
+}

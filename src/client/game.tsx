@@ -6,12 +6,21 @@ import { showToast } from '@devvit/web/client';
 import { formatQuestionShort } from '../shared/format';
 import { priceFor } from '../shared/scoring';
 import type { Call, Side } from '../shared/types';
-import { NOW, questionSamples, todaySample } from './preview/fixtures';
+import {
+  NOW,
+  questionSamples,
+  resultsSample,
+  todaySample,
+} from './preview/fixtures';
 import { LockedScreen } from './screens/LockedScreen';
 import { QuestionScreen } from './screens/QuestionScreen';
+import { ResultsScreen } from './screens/ResultsScreen';
 import { TodayScreen } from './screens/TodayScreen';
 
-type View = { screen: 'today' } | { screen: 'question'; questionId: string };
+type View =
+  | { screen: 'today' }
+  | { screen: 'question'; questionId: string }
+  | { screen: 'results' };
 
 export const App = () => {
   const [calls, setCalls] = useState<Call[]>(todaySample.calls);
@@ -32,6 +41,17 @@ export const App = () => {
 
   const goToday = () => setView({ screen: 'today' });
   const comingSoon = () => showToast('Coming soon');
+
+  if (view.screen === 'results') {
+    const settlesAt = today.questions[0]?.question.settlesAt;
+    return (
+      <ResultsScreen
+        results={resultsSample}
+        {...(settlesAt ? { todaySettlesAt: settlesAt } : {})}
+        onToday={goToday}
+      />
+    );
+  }
 
   if (view.screen === 'question') {
     const index = questionSamples.findIndex(
@@ -86,7 +106,7 @@ export const App = () => {
         setView({ screen: 'question', questionId })
       }
       onCall={makeCall}
-      onOpenResults={comingSoon}
+      onOpenResults={() => setView({ screen: 'results' })}
       onLeaderboard={comingSoon}
     />
   );
