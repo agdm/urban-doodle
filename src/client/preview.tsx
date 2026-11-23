@@ -40,10 +40,10 @@ import {
   allRedditSeries,
   CHART_RANGE,
   crowdByQuestion,
-  denverCall,
-  denverMarkers,
-  denverQuestion,
-  denverSubSeries,
+  hometownCall,
+  hometownMarkers,
+  hometownQuestion,
+  hometownSeries,
   NOW,
   playerStats,
   questions,
@@ -65,7 +65,7 @@ export const Section = ({ name, children }: { name: string; children: ReactNode 
 
 export const Preview = () => {
   const [scope, setScope] = useState<'sub' | 'all'>('sub');
-  const [message, setMessage] = useState("I'm taking Under 48.5°F in Denver. That front is coming in early.");
+  const [message, setMessage] = useState("I'm taking Under 52.5°F in New York. That front is coming in early.");
   const [shareStatus, setShareStatus] = useState<'idle' | 'sharing' | 'shared'>('idle');
 
   const tally = tallyDay(yesterdayResults);
@@ -93,12 +93,12 @@ export const Preview = () => {
         <StatTile label="If Under wins" value={<SignedPoints points={62} />} />
       </Section>
       <Section name="Countdown">
-        <Countdown label="Lock at midnight" until={denverQuestion.closesAt} now={NOW} />
+        <Countdown label="Lock at midnight" until={hometownQuestion.closesAt} now={NOW} />
       </Section>
       <Section name="SectionHeader">
         <SectionHeader
           title="Today's calls"
-          aside={<Countdown label="Lock at midnight" until={denverQuestion.closesAt} now={NOW} />}
+          aside={<Countdown label="Lock at midnight" until={hometownQuestion.closesAt} now={NOW} />}
         />
       </Section>
       <Section name="SegmentedControl">
@@ -107,7 +107,7 @@ export const Preview = () => {
           value={scope}
           onChange={setScope}
           options={[
-            { value: 'sub', label: 'r/Denver' },
+            { value: 'sub', label: 'r/nyc' },
             { value: 'all', label: 'All Reddit' },
           ]}
         />
@@ -116,7 +116,7 @@ export const Preview = () => {
         <BackNav label="Today" onBack={() => log('back')} trailing="Question 1 of 3" />
       </Section>
       <Section name="Sparkline">
-        <Sparkline points={denverSubSeries} />
+        <Sparkline points={hometownSeries} />
       </Section>
       <Section name="SideButton">
         <SideButton kind="overUnder" side="yes" yesPct={62} onSelect={log} />
@@ -164,17 +164,17 @@ export const Preview = () => {
       <Section name="StatsFooter">
         <StatsFooter
           playersToday={2184}
-          subRank={{ position: 3, of: 41, scope: { kind: 'subreddit', name: 'Denver' } }}
+          subRank={{ position: 3, of: 41, scope: { kind: 'subreddit', name: 'nyc' } }}
           onLeaderboard={() => log('leaderboard')}
         />
       </Section>
 
       <Section name="QuestionHeader">
-        <QuestionHeader question={denverQuestion} />
+        <QuestionHeader question={hometownQuestion} />
       </Section>
       <Section name="CrowdPanel + CrowdChart + ChartLegend (open question)">
         <CrowdPanel
-          eyebrow={scope === 'sub' ? 'r/Denver says' : 'All Reddit says'}
+          eyebrow={scope === 'sub' ? 'r/nyc says' : 'All Reddit says'}
           value={scope === 'sub' ? '62%' : '54%'}
           valueLabel="Over"
           controls={
@@ -183,26 +183,26 @@ export const Preview = () => {
               value={scope}
               onChange={setScope}
               options={[
-                { value: 'sub', label: 'r/Denver' },
+                { value: 'sub', label: 'r/nyc' },
                 { value: 'all', label: 'All Reddit' },
               ]}
             />
           }
         >
           <CrowdChart
-            ariaLabel="Share calling Over since 7am: r/Denver rose from 50 to 62 percent, all of Reddit from 50 to 54 percent"
+            ariaLabel="Share calling Over since 7am: r/nyc rose from 50 to 62 percent, all of Reddit from 50 to 54 percent"
             range={CHART_RANGE}
             series={[
               { id: 'all', label: 'All Reddit', points: allRedditSeries, emphasis: 'secondary' },
-              { id: 'sub', label: 'r/Denver', points: denverSubSeries, emphasis: 'primary' },
+              { id: 'sub', label: 'r/nyc', points: hometownSeries, emphasis: 'primary' },
             ]}
-            markers={denverMarkers}
+            markers={hometownMarkers}
             timeTicks={timeTicks}
             showLatest
           />
           <ChartLegend
             items={[
-              { id: 'sub', label: 'r/Denver', kind: 'primary' },
+              { id: 'sub', label: 'r/nyc', kind: 'primary' },
               { id: 'all', label: 'All Reddit 54%', kind: 'secondary' },
               { id: 'calls', label: 'calls', kind: 'marker' },
             ]}
@@ -212,17 +212,17 @@ export const Preview = () => {
       </Section>
 
       <Section name="LockConfirmation">
-        <LockConfirmation question={denverQuestion} call={denverCall} settlesLabel="settles Sunday around 7am ET" />
+        <LockConfirmation question={hometownQuestion} call={hometownCall} settlesLabel="settles Sunday around 7am ET" />
       </Section>
       <Section name="PayoutTiles">
-        <PayoutTiles kind="overUnder" side={denverCall.side} payout={payoutFor(denverCall.price)} />
+        <PayoutTiles kind="overUnder" side={hometownCall.side} payout={payoutFor(hometownCall.price)} />
       </Section>
       <Section name="CrowdChart (locked: your marker)">
         <CrowdChart
           ariaLabel="Crowd at 62 percent Over; your Under call is marked at the latest point"
           range={CHART_RANGE}
-          series={[{ id: 'sub', label: 'r/Denver', points: denverSubSeries, emphasis: 'primary' }]}
-          you={{ marker: { at: NOW, side: denverCall.side, yesPct: 62 }, label: 'You - Under at 38' }}
+          series={[{ id: 'sub', label: 'r/nyc', points: hometownSeries, emphasis: 'primary' }]}
+          you={{ marker: { at: NOW, side: hometownCall.side, yesPct: 62 }, label: 'You - Under at 38' }}
           pctTicks={[0, 50]}
         />
       </Section>
@@ -246,7 +246,7 @@ export const Preview = () => {
           eyebrow="Thursday's weather - results"
           tally={tally}
           stats={{ ...playerStats, streakDays: 6 }}
-          summary="2 of 3 right. You beat the r/Denver crowd on your hometown question."
+          summary="2 of 3 right. You beat the r/nyc crowd on your hometown question."
         />
       </Section>
       {featured ? (
@@ -255,7 +255,7 @@ export const Preview = () => {
             <CrowdChart
               ariaLabel="Crowd ended at 64 percent Over; the outcome was Under; you called Under at 38 during the afternoon"
               range={CHART_RANGE}
-              series={[{ id: 'sub', label: 'r/Denver', points: denverSubSeries, emphasis: 'primary' }]}
+              series={[{ id: 'sub', label: 'r/nyc', points: hometownSeries, emphasis: 'primary' }]}
               you={{
                 marker: { at: '2026-11-13T20:00:00Z', side: featured.call.side, yesPct: 57 },
                 label: `You: Under at ${featured.call.price}`,
