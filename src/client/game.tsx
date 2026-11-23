@@ -6,9 +6,9 @@ import { showToast } from '@devvit/web/client';
 import type { TodayResponse } from '../shared/api';
 import { formatQuestionShort } from '../shared/format';
 import { priceFor } from '../shared/scoring';
-import { NOW } from '../shared/sampleData';
 import type { Call, Side } from '../shared/types';
 import { fetchQuestion, fetchResults, fetchToday } from './api';
+import { useNow } from './hooks/useNow';
 import { useRemote, type Remote } from './hooks/useRemote';
 import { LockedScreen } from './screens/LockedScreen';
 import { QuestionScreen } from './screens/QuestionScreen';
@@ -133,6 +133,7 @@ export const App = () => {
   // Calls made on this device; they stay local until POST /api/call exists.
   const [localCalls, setLocalCalls] = useState<Call[]>([]);
   const [view, setView] = useState<View>({ screen: 'today' });
+  const now = useNow();
 
   if (remote.status !== 'ready') return pending(remote, "today's calls", retry);
 
@@ -175,7 +176,8 @@ export const App = () => {
   return (
     <TodayScreen
       today={today}
-      now={NOW}
+      now={now}
+      timeZone={Intl.DateTimeFormat().resolvedOptions().timeZone}
       onOpenQuestion={openQuestion}
       onCall={(questionId, side) => {
         const entry = today.questions.find((q) => q.question.id === questionId);

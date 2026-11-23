@@ -1,4 +1,5 @@
 import { sideLabel } from './scoring.ts';
+import { GAME_TIME_ZONE } from './time.ts';
 import type {
   CrowdScope,
   Measurement,
@@ -113,10 +114,27 @@ export const formatQuestionShort = (question: Question): string =>
 
 // When settlement runs, in US Eastern time, e.g. "Sunday around 7am ET".
 export const formatSettles = (at: string): string => {
-  const timeZone = 'America/New_York';
+  const timeZone = GAME_TIME_ZONE;
   const weekday = new Intl.DateTimeFormat('en-US', {
     weekday: 'long',
     timeZone,
   }).format(new Date(at));
   return `${weekday} around ${formatHourShort(at, timeZone)}m ET`;
+};
+
+// A clock time in a zone, e.g. "9pm", "10:30am", "midnight" or "noon".
+export const formatClockTime = (at: string, timeZone: string): string => {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    hourCycle: 'h12',
+    timeZone,
+  }).formatToParts(new Date(at));
+  const get = (type: Intl.DateTimeFormatPartTypes): string =>
+    parts.find((p) => p.type === type)?.value ?? '';
+  const hour = get('hour');
+  const minute = get('minute');
+  const period = get('dayPeriod').toLowerCase();
+  if (hour === '12' && minute === '00') return period === 'am' ? 'midnight' : 'noon';
+  return `${hour}${minute === '00' ? '' : `:${minute}`}${period}`;
 };

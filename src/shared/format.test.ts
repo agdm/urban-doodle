@@ -8,6 +8,7 @@ import {
   formatScope,
   formatForecast,
   formatChoice,
+  formatClockTime,
   formatHourShort,
   formatQuestionShort,
   formatSettles,
@@ -100,4 +101,13 @@ test('formatQuestionShort names the city and what is measured', () => {
 
 test('formatSettles gives the Eastern weekday and hour', () => {
   assert.equal(formatSettles('2026-11-15T12:00:00Z'), 'Sunday around 7am ET');
+});
+
+test('formatClockTime shows the lock in the reader\'s zone', () => {
+  const lock = '2026-11-23T05:00:00Z'; // midnight Eastern
+  assert.equal(formatClockTime(lock, 'America/New_York'), 'midnight');
+  assert.equal(formatClockTime(lock, 'America/Denver'), '10pm');
+  assert.equal(formatClockTime(lock, 'America/Los_Angeles'), '9pm');
+  assert.equal(formatClockTime(lock, 'Asia/Kolkata'), '10:30am');
+  assert.equal(formatClockTime('2026-11-23T17:00:00Z', 'America/New_York'), 'noon');
 });

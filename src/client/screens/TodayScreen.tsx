@@ -1,6 +1,10 @@
 import './TodayScreen.css';
 import type { TodayResponse } from '../../shared/api';
-import { formatShortDate, formatWeekday } from '../../shared/format';
+import {
+  formatClockTime,
+  formatShortDate,
+  formatWeekday,
+} from '../../shared/format';
 import { tallyDay } from '../../shared/scoring';
 import type { Side } from '../../shared/types';
 import {
@@ -15,6 +19,8 @@ import {
 export type TodayScreenProps = {
   today: TodayResponse;
   now: string;
+  // The reader's time zone, for showing when calls lock on their clock.
+  timeZone: string;
   onOpenQuestion: (questionId: string) => void;
   onCall: (questionId: string, side: Side) => void;
   onOpenResults: () => void;
@@ -24,6 +30,7 @@ export type TodayScreenProps = {
 export const TodayScreen = ({
   today,
   now,
+  timeZone,
   onOpenQuestion,
   onCall,
   onOpenResults,
@@ -44,7 +51,13 @@ export const TodayScreen = ({
       <section data-part="calls">
         <SectionHeader
           title="Today's calls"
-          aside={<Countdown label="Lock at midnight" until={today.closesAt} now={now} />}
+          aside={
+            <Countdown
+              label={`Locks at ${formatClockTime(today.closesAt, timeZone)}`}
+              until={today.closesAt}
+              now={now}
+            />
+          }
         />
         {today.questions.map(({ question, yesPct, trend }) => {
           const lockedSide = calledSide.get(question.id);
