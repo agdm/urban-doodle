@@ -8,7 +8,9 @@
       "node"
     ],
     "exactOptionalPropertyTypes": false,
-    "rootDir": "../src/server"
+    "rootDir": "../src/server",
+    "emitDeclarationOnly": true,
+    "allowImportingTsExtensions": true
   },
   "include": [
     "../src/server/**/*"

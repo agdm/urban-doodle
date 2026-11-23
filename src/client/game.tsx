@@ -1,21 +1,47 @@
 import './index.css';
 
-import { StrictMode, useState } from 'react';
+import { StrictMode, useCallback, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { showToast } from '@devvit/web/client';
 import { formatQuestionShort } from '../shared/format';
 import { priceFor } from '../shared/scoring';
+import type { TodayResponse } from '../shared/api';
+import { NOW, questionSamples, resultsSample } from '../shared/sampleData';
 import type { Call, Side } from '../shared/types';
-import {
-  NOW,
-  questionSamples,
-  resultsSample,
-  todaySample,
-} from './preview/fixtures';
+import { fetchToday } from './api';
 import { LockedScreen } from './screens/LockedScreen';
 import { QuestionScreen } from './screens/QuestionScreen';
 import { ResultsScreen } from './screens/ResultsScreen';
 import { TodayScreen } from './screens/TodayScreen';
+
+type Load =
+  | { status: 'loading' }
+  | { status: 'error' }
+  | { status: 'ready'; today: TodayResponse };
+
+const StatusScreen = ({
+  message,
+  onRetry,
+}: {
+  message: string;
+  onRetry?: () => void;
+}) => (
+  <main
+    data-screen="status"
+    className="flex min-h-screen flex-col items-center justify-center gap-3 p-4 text-sm text-muted"
+  >
+    <p>{message}</p>
+    {onRetry ? (
+      <button
+        type="button"
+        onClick={onRetry}
+        className="min-h-11 rounded-control px-4 font-semibold text-under"
+      >
+        Try again
+      </button>
+    ) : null}
+  </main>
+);
 
 type View =
   | { screen: 'today' }
@@ -23,9 +49,42 @@ type View =
   | { screen: 'results' };
 
 export const App = () => {
-  const [calls, setCalls] = useState<Call[]>(todaySample.calls);
+  const [load, setLoad] = useState<Load>({ status: 'loading' });
+  const [calls, setCalls] = useState<Call[]>([]);
   const [view, setView] = useState<View>({ screen: 'today' });
-  const today = { ...todaySample, calls };
+
+  // State only changes once the request settles, never synchronously in the effect.
+  const loadToday = useCallback(() => {
+    fetchToday()
+      .then((today) => {
+        setCalls(today.calls);
+        setLoad({ status: 'ready', today });
+      })
+      .catch((error: unknown) => {
+        console.error('Loading today failed:', error);
+        setLoad({ status: 'error' });
+      });
+  }, []);
+
+  useEffect(loadToday, [loadToday]);
+
+  if (load.status === 'loading') {
+    return <StatusScreen message="Loading today's calls..." />;
+  }
+  if (load.status === 'error') {
+    return (
+      <StatusScreen
+        message="Couldn't load today's calls."
+        onRetry={() => {
+          setLoad({ status: 'loading' });
+          loadToday();
+        }}
+      />
+    );
+  }
+
+  // Calls stay local until POST /api/call exists.
+  const today = { ...load.today, calls };
 
   const makeCall = (questionId: string, side: Side) => {
     const entry = today.questions.find((q) => q.question.id === questionId);

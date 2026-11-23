@@ -10,5 +10,5 @@
   },
   "include": ["../src/**/*.test.ts"],
   "exclude": [],
-  "references": [{ "path": "./tsconfig.shared.json" }]
+  "references": [{ "path": "./tsconfig.shared.json" }, { "path": "./tsconfig.server.json" }]
 }

@@ -49,7 +49,7 @@ import {
   questions,
   timeTicks,
   yesterdayResults,
-} from './preview/fixtures';
+} from '../shared/sampleData';
 
 const log = (...args: unknown[]) => console.log('[preview]', ...args);
 

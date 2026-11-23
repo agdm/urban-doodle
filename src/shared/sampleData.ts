@@ -1,4 +1,6 @@
-import type { QuestionResponse, ResultsResponse, TodayResponse } from '../../shared/api';
+// Sample data from the design canvas. The server serves it until questions,
+// crowds and results come from Redis; the component preview uses it too.
+import type { QuestionResponse, ResultsResponse, TodayResponse } from './api.ts';
 import type {
   AccuracyEntry,
   Call,
@@ -8,7 +10,7 @@ import type {
   PlayerStats,
   Question,
   ScoredCall,
-} from '../../shared/types';
+} from './types.ts';
 
 const series = (start: string, stepMinutes: number, values: number[]): CrowdPoint[] =>
   values.map((yesPct, i) => ({
