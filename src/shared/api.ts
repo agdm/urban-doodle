@@ -11,6 +11,11 @@ import type {
   ScoredCall,
 } from './types.ts';
 
+export type ErrorResponse = {
+  type: 'error';
+  message: string;
+};
+
 export type TodayQuestion = {
   question: Question;
   yesPct: number;
